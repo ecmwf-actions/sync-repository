@@ -7,7 +7,7 @@ const actionContent = fs.readFileSync(actionPath, 'utf8');
 
 describe('action.yml', () => {
     it('clones source repository', async () => {
-        // expect.assertions(1);
+        expect.assertions(1);
         const action = yaml.load(actionContent);
         expect(action.runs.steps[0].run).toContain('git clone');
     });
