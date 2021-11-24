@@ -10,6 +10,7 @@ A Github action to sync a Git repository.
 
 * Syncs the current Git repository branch/tag
 * Supports both source and target authentication (`HTTPBasicAuth`)
+* Supports deletion of branches/tags
 
 ## Supported Operating Systems
 
@@ -98,7 +99,13 @@ npm install
 
 ### Composite Action
 
-This is a composite action that is provided only via an `action.yml` definition file. Therefore, there is no need to build it and can only be tested by parsing the YAML file.
+This is a composite action that is provided only via an `action.yml` definition file. Therefore, there is no need to build it and can only be tested by linting or parsing the YAML file.
+
+### Lint Code
+
+```
+npm run lint
+```
 
 ### Run Tests
 
