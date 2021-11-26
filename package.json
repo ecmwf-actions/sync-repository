@@ -11,7 +11,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ecmwf-actions/mirror-repository"
+    "url": "git+https://github.com/dvuckovic/sync-repository"
   },
   "devDependencies": {
     "auto-changelog": "^2.3.0",
