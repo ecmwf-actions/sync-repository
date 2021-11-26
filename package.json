@@ -5,8 +5,14 @@
   "main": "action.yml",
   "scripts": {
     "lint": "eslint --ext .js,.yml --fix action.yml .github tests",
+    "lint-no-fix": "npm run lint -- --no-fix",
     "test": "jest",
     "version": "auto-changelog && git add CHANGELOG.md"
+  },
+  "git": {
+    "pre-commit": [
+      "lint-no-fix"
+    ]
   },
   "license": "Apache-2.0",
   "repository": {
@@ -14,6 +20,7 @@
     "url": "git+https://github.com/dvuckovic/sync-repository"
   },
   "devDependencies": {
+    "@vercel/git-hooks": "^1.0.0",
     "auto-changelog": "^2.3.0",
     "eslint": "^8.3.0",
     "eslint-plugin-jest": "^25.3.0",
