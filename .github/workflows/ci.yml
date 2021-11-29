@@ -10,33 +10,18 @@ on:
     tags-ignore:
     - '**'
 
+  # Trigger the workflow on all pull requests
+  pull_request: ~
+
   # Allow workflow to be dispatched on demand
   workflow_dispatch: ~
 
 jobs:
+
+  # Calls a reusable CI NodeJS workflow to qa & test the current repository.
+  #   It will install dependencies and run lint and test commands.
   ci:
     name: ci
-    strategy:
-      matrix:
-        os:
-        - ubuntu-20.04
-        - ubuntu-18.04
-        - macos-10.15
-    runs-on: ${{ matrix.os }}
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '12'
-
-    - name: Install Dependencies
-      run: npm install
-
-    - name: Code QA
-      run: npm run lint-no-fix
-
-    - name: Run Tests
-      run: npm test
+    uses: ecmwf-actions/reusable-workflows/.github/workflows/ci-node.yml@v1
+    with:
+      self_build: false
