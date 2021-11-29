@@ -1,8 +1,8 @@
 # sync-repository
 
-[![Changelog](https://img.shields.io/github/package-json/v/dvuckovic/sync-repository)](CHANGELOG.md)
-[![Build Status](https://img.shields.io/github/workflow/status/dvuckovic/sync-repository/ci/main)](https://github.com/dvuckovic/sync-repository/actions/workflows/ci.yml?query=branch:main)
-[![Licence](https://img.shields.io/github/license/dvuckovic/sync-repository)](https://github.com/dvuckovic/sync-repository/blob/main/LICENSE)
+[![Changelog](https://img.shields.io/github/package-json/v/ecmwf-actions/sync-repository)](CHANGELOG.md)
+[![Build Status](https://img.shields.io/github/workflow/status/ecmwf-actions/sync-repository/ci/main)](https://github.com/ecmwf-actions/sync-repository/actions/workflows/ci.yml?query=branch:main)
+[![Licence](https://img.shields.io/github/license/ecmwf-actions/sync-repository)](https://github.com/ecmwf-actions/sync-repository/blob/main/LICENSE)
 
 A Github action to sync a Git repository.
 
@@ -24,7 +24,7 @@ A Github action to sync a Git repository.
 ```yaml
 steps:
 - name: Sync Repository
-  uses: dvuckovic/sync-repository@v1
+  uses: ecmwf-actions/sync-repository@v1
   with:
     target_repository: ecsdk/ecbuild
     target_username: ${{ secrets.BITBUCKET_USERNAME }}
@@ -36,7 +36,7 @@ steps:
 ```yaml
 steps:
 - name: Sync Repository
-  uses: dvuckovic/sync-repository@v1
+  uses: ecmwf-actions/sync-repository@v1
   with:
     source_repository: ecmwf/ecbuild
     source_token: ${{ secrets.GH_PAT }}
