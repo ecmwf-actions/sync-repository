@@ -1,6 +1,6 @@
 {
   "name": "sync-repository",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A Github action to sync a Git repository",
   "main": "action.yml",
   "scripts": {
