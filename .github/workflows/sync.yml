@@ -10,6 +10,9 @@ on:
     tags:
     - '**'
 
+  # Trigger the workflow when a branch or tag is deleted
+  delete: ~
+
   # Allow workflow to be dispatched on demand
   workflow_dispatch: ~
 
