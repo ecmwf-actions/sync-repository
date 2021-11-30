@@ -1,0 +1,60 @@
+name: Sync Repository
+description: A Github action to sync a Git repository.
+inputs:
+  source_repository:
+    description: The name of the source repository.
+    required: true
+    default: ${{ github.repository }}
+  source_ref:
+    description: The name of the source repository branch or tag to sync.
+    required: true
+    default: ${{ github.event.ref }}
+  source_username:
+    description: The user login with read access to the source repository, must be URL-encoded.
+    required: true
+    default: git
+  source_token:
+    description: The user access token with read access to the source repository, must be URL-encoded.
+    required: true
+    default: ${{ github.token }}
+  source_host:
+    description: The host name and realm of the source Git server.
+    required: true
+    default: github.com
+  target_repository:
+    description: The name of the target repository.
+    required: true
+  target_username:
+    description: The user login with write access to the target repository, must be URL-encoded.
+    required: true
+  target_token:
+    description: The user access token with write access to the target repository, must be URL-encoded.
+    required: true
+  target_host:
+    description: The host name and realm of the target Git server.
+    required: true
+    default: git.ecmwf.int/scm
+runs:
+  using: composite
+  steps:
+    - name: Push Ref
+      if: github.event_name == 'push'
+      shell: bash -eu {0}
+      run: |
+        source_repository=${{ inputs.source_repository }}
+        source_ref=${{ inputs.source_ref }}
+        ref_name="${source_ref##refs/heads/}"
+        ref_name="${ref_name##refs/tags/}"
+        source_dir="${source_repository##*/}"
+        git clone --branch $ref_name 'https://${{ inputs.source_username }}:${{ inputs.source_token }}@${{ inputs.source_host }}/${{ inputs.source_repository }}.git' ${source_dir}.git
+        cd ${source_dir}.git
+        git push --force 'https://${{ inputs.target_username }}:${{ inputs.target_token }}@${{ inputs.target_host }}/${{ inputs.target_repository }}.git' $ref_name
+
+    - name: Delete Ref
+      if: github.event_name == 'delete'
+      shell: bash -eu {0}
+      run: |
+        source_ref=${{ inputs.source_ref }}
+        ref_name="${source_ref##refs/heads/}"
+        ref_name="${ref_name##refs/tags/}"
+        git push --delete 'https://${{ inputs.target_username }}:${{ inputs.target_token }}@${{ inputs.target_host }}/${{ inputs.target_repository }}.git' $ref_name
