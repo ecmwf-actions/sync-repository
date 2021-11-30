@@ -8,7 +8,7 @@ inputs:
   source_ref:
     description: The name of the source repository branch or tag to sync.
     required: true
-    default: ${{ github.ref_name }}
+    default: ${{ github.event.ref }}
   source_username:
     description: The user login with read access to the source repository, must be URL-encoded.
     required: true
@@ -51,4 +51,4 @@ runs:
       if: github.event_name == 'delete'
       shell: bash -eu {0}
       run: |
-        git push --delete 'https://${{ inputs.target_username }}:${{ inputs.target_token }}@${{ inputs.target_host }}/${{ inputs.target_repository }}.git' ${{ github.event.ref }}
+        git push --delete 'https://${{ inputs.target_username }}:${{ inputs.target_token }}@${{ inputs.target_host }}/${{ inputs.target_repository }}.git' ${{ inputs.source_ref }}

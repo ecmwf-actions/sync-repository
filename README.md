@@ -55,7 +55,7 @@ steps:
 ### `source_ref`
 
 **Required** The name of the source repository branch or tag to sync.  
-**Default:** `${{ github.ref }}`
+**Default:** `${{ github.event.ref }}`
 
 ### `source_username`
 
