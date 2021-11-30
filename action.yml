@@ -42,13 +42,19 @@ runs:
       shell: bash -eu {0}
       run: |
         source_repository=${{ inputs.source_repository }}
+        source_ref=${{ inputs.source_ref }}
+        ref_name="${source_ref##refs/heads/}"
+        ref_name="${ref_name##refs/tags/}"
         source_dir="${source_repository##*/}"
-        git clone --branch ${{ inputs.source_ref }} 'https://${{ inputs.source_username }}:${{ inputs.source_token }}@${{ inputs.source_host }}/${{ inputs.source_repository }}.git' ${source_dir}.git
+        git clone --branch $ref_name 'https://${{ inputs.source_username }}:${{ inputs.source_token }}@${{ inputs.source_host }}/${{ inputs.source_repository }}.git' ${source_dir}.git
         cd ${source_dir}.git
-        git push --force 'https://${{ inputs.target_username }}:${{ inputs.target_token }}@${{ inputs.target_host }}/${{ inputs.target_repository }}.git' ${{ inputs.source_ref }}
+        git push --force 'https://${{ inputs.target_username }}:${{ inputs.target_token }}@${{ inputs.target_host }}/${{ inputs.target_repository }}.git' $ref_name
 
     - name: Delete Ref
       if: github.event_name == 'delete'
       shell: bash -eu {0}
       run: |
-        git push --delete 'https://${{ inputs.target_username }}:${{ inputs.target_token }}@${{ inputs.target_host }}/${{ inputs.target_repository }}.git' ${{ inputs.source_ref }}
+        source_ref=${{ inputs.source_ref }}
+        ref_name="${source_ref##refs/heads/}"
+        ref_name="${ref_name##refs/tags/}"
+        git push --delete 'https://${{ inputs.target_username }}:${{ inputs.target_token }}@${{ inputs.target_host }}/${{ inputs.target_repository }}.git' $ref_name
