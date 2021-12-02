@@ -5,7 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 1.0.0
+## [v1.0.1](https://github.com/ecmwf-actions/sync-repository/compare/v1...v1.0.1)
+
+### Commits
+
+- Added checkout command to the delete step. [`3982aeb`](https://github.com/ecmwf-actions/sync-repository/commit/3982aeb2b9e454ea428af20670edaac151d3f347)
+- Merge tag 'v1.0.0' into develop [`c408f04`](https://github.com/ecmwf-actions/sync-repository/commit/c408f047c9c95530fed9959bcac1d8c7b904d7da)
+
+## [v1](https://github.com/ecmwf-actions/sync-repository/compare/v1.0.0...v1) - 2021-11-30
+
+## v1.0.0 - 2021-11-30
 
 ### Commits
 
