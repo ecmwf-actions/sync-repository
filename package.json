@@ -4,9 +4,9 @@
   "description": "A Github action to sync a Git repository",
   "main": "action.yml",
   "scripts": {
-    "lint": "eslint --ext .js,.yml --fix action.yml .github tests",
+    "lint": "eslint --ext .ts,.yml --fix action.yml .github tests",
     "lint-no-fix": "npm run lint -- --no-fix",
-    "test": "jest",
+    "test": "jest --ci",
     "version": "auto-changelog && git add CHANGELOG.md"
   },
   "git": {
@@ -20,17 +20,39 @@
     "url": "git+https://github.com/dvuckovic/sync-repository"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.0",
+    "@types/jest": "^27.0.3",
+    "@types/js-yaml": "^4.0.5",
+    "@types/node": "^16.11.11",
+    "@typescript-eslint/eslint-plugin": "^5.5.0",
+    "@typescript-eslint/parser": "^5.5.0",
     "@vercel/git-hooks": "^1.0.0",
     "auto-changelog": "^2.3.0",
     "eslint": "^8.3.0",
     "eslint-plugin-jest": "^25.3.0",
     "eslint-plugin-json-schema-validator": "^2.1.9",
     "eslint-plugin-jsonc": "^2.0.0",
-    "jest": "^27.3.1",
-    "js-yaml": "^4.1.0"
+    "jest": "^27.4.3",
+    "js-yaml": "^4.1.0",
+    "typescript": "^4.5.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ],
+      "@babel/preset-typescript"
+    ]
   },
   "jest": {
-    "clearMocks": true
+    "clearMocks": true,
+    "restoreMocks": true
   },
   "eslintConfig": {
     "env": {
@@ -39,9 +61,14 @@
       "commonjs": true,
       "es2021": true
     },
+    "plugins": [
+      "@typescript-eslint"
+    ],
     "extends": [
       "eslint:recommended",
       "plugin:jest/all",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
       "plugin:json-schema-validator/recommended"
     ],
     "parserOptions": {
