@@ -5,9 +5,10 @@ on:
   # Trigger the workflow on all pushes, except on tag creation
   push:
     branches:
-      - '**'
+      - main
+      - develop
     tags-ignore:
-      - '**'
+      - "**"
 
   # Trigger the workflow on all pull requests
   pull_request: ~

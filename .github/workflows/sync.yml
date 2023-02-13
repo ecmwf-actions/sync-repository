@@ -2,13 +2,12 @@ name: sync
 
 # Controls when the workflow will run
 on:
-
   # Trigger the workflow on all pushes
   push:
     branches:
-    - '**'
+      - "**"
     tags:
-    - '**'
+      - "**"
 
   # Trigger the workflow when a branch or tag is deleted
   delete: ~
@@ -20,13 +19,14 @@ jobs:
   sync:
     name: sync
     runs-on: ubuntu-20.04
+    if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-    - name: Sync Repository
-      uses: ./
-      with:
-        target_repository: ${{ secrets.BITBUCKET_REPOSITORY }}
-        target_username: ${{ secrets.BITBUCKET_USERNAME }}
-        target_token: ${{ secrets.BITBUCKET_PAT }}
+      - name: Sync Repository
+        uses: ./
+        with:
+          target_repository: ${{ secrets.BITBUCKET_REPOSITORY }}
+          target_username: ${{ secrets.BITBUCKET_USERNAME }}
+          target_token: ${{ secrets.BITBUCKET_PAT }}
