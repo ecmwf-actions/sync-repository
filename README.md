@@ -1,7 +1,7 @@
 # sync-repository
 
 [![Changelog](https://img.shields.io/github/package-json/v/ecmwf-actions/sync-repository)](CHANGELOG.md)
-[![Build Status](https://img.shields.io/github/workflow/status/ecmwf-actions/sync-repository/ci)](https://github.com/ecmwf-actions/sync-repository/actions/workflows/ci.yml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/ecmwf-actions/sync-repository/ci.yml?branch=main)](https://github.com/ecmwf-actions/sync-repository/actions/workflows/ci.yml)
 [![Licence](https://img.shields.io/github/license/ecmwf-actions/sync-repository)](https://github.com/ecmwf-actions/sync-repository/blob/main/LICENSE)
 
 A Github action to sync a Git repository.
