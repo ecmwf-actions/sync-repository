@@ -18,7 +18,7 @@ on:
 jobs:
   sync:
     name: sync
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: Checkout Repository
