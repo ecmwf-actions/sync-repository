@@ -1,5 +1,5 @@
 > [!CAUTION]
-> This repository was moved to https://github.com/ecmwf/build-package. Do not update!
+> This repository was moved to https://github.com/ecmwf/sync-repository. Do not update!
 
 # sync-repository
 
